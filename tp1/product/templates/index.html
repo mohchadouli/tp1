@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Produits</title>
+</head>
+<body>
+    <h1>La liste des produits disponibles :</h1>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.Prd_Name }} - {{ product.Price }} €</li>
+        {% empty %}
+            <li>Aucun produit disponible.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

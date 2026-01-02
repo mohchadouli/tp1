@@ -1,3 +1,12 @@
 from django.shortcuts import render
+from .models import Product
 
-# Create your views here.
+def afficher_produits(request):
+    produits = Product.objects.all()
+    return render(request, "index.html", {
+        "products": produits
+        })
+
+
+
+

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Passer une Commande</title>
+</head>
+<body>
+    <h4>Formulaire pour passer des commandes :</h4>
+    <form method="POST" action="{% url 'commander' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Valider">
+    </form>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>

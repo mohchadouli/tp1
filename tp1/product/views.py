@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Product
+from .models import *
+from .forms import CommandeForm
 
 def afficher_produits(request):
     produits = Product.objects.all()
@@ -27,6 +28,20 @@ def rechercher_produits(request):
     
     return render(request, 'search.html')
 
-
+def commander_prd(request):
+    message = ''
+    if request.method == 'POST':
+        form = CommandeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form = CommandeForm()  # Reset form
+            message = 'Commande envoyée, vous pouvez saisir une autre.'
+        else:
+            message = 'Veuillez remplir tous les champs correctement !'
+    else:
+        form = CommandeForm()
+        message = 'Veuillez remplir tous les champs !'
+    
+    return render(request, "commande.html", {"form": form, "message": message})
 
 

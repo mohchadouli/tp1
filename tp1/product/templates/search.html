@@ -11,7 +11,19 @@
         <button type="submit">Démarrer la recherche</button>
     </form>
 
-    {% if products %}
+    {% if level == 2 %}
+        <p>Recherche niveau 1 – Aucun produit n'a été trouvé !</p>
+        <h4>Résultat de recherche niveau 2 :</h4>
+        {% if products %}
+            <ul>
+                {% for product in products %}
+                    <li>Nom du produit : {{ product.Prd_Name }}, Prix : {{ product.Price }} Da.</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun produit trouvé dans les ingrédients non plus.</p>
+        {% endif %}
+    {% elif products %}
         <h4>Résultat de recherche :</h4>
         <ul>
             {% for product in products %}

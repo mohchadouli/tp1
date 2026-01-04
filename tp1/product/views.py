@@ -7,6 +7,15 @@ def afficher_produits(request):
         "products": produits
         })
 
+def rechercher_produit(request):
+    if request.method == "GET":
+        query = request.GET.get('search')
+        if query:
+            produits = Product.objects.filter(Prd_Name__contains=query)
+            return render(request, 'search.html', {
+                'products': produits
+            })
+    return render(request, 'search.html')
 
 
 

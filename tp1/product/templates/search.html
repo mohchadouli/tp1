@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recherche de Produits</title>
+</head>
+<body>
+    <h2>Rechercher un produit</h2>
+    <form action="{% url 'search_product' %}" method="GET">
+        <label for="search">Entrez le nom du produit :</label>
+        <input type="text" name="search" id="search">
+        <button type="submit">Démarrer la recherche</button>
+    </form>
+
+    {% if products %}
+        <h4>Résultat de recherche :</h4>
+        <ul>
+            {% for product in products %}
+                <li>Nom du produit : {{ product.Prd_Name }}, Prix : {{ product.Price }} Da.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
